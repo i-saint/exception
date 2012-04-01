@@ -1,0 +1,45 @@
+require 'kconv'
+
+def convert(filename)
+  dat = open(filename){|f| f.read}
+  return if !dat.issjis
+
+  if ENV["LANG"]=="ja_JP.EUC-JP"
+    dat = dat.toeuc
+  else
+    dat = dat.toutf8
+  end
+  open(filename, "wb"){|f| f.write dat}
+end
+
+
+CFLAGS = "-O2 -D SG_BUILD_STATIC -I ../ #{`freetype-config --cflags`} #{`sdl-config --cflags`}".gsub(/\n/, '')
+LFLAGS = ''
+LIBS = "-L ../ist -L . -lsgui -list -lz -lpng -ljpeg -lGL -lGLU -lftgl #{`sdl-config --libs`} #{`freetype-config --libs`}".gsub(/\n/, '')
+AR = 'ar'
+CC = 'g++'
+
+
+task "default" => "libsgui.a"
+task "all" => ["libsgui.a", "test"]
+
+file "libsgui.a" => ["sgui.o", "sgui_gl.o"] do |t|
+  sh "#{AR} -r #{t.name} #{t.prerequisites.join(' ')} #{LFLAGS}"
+end
+
+file "test" => ["libsgui.a", "test.o"] do |t|
+  t.prerequisites.each do |f|
+    convert(f)
+  end
+  sh "#{CC} -o #{t.name} #{t.prerequisites.join(' ')} #{CFLAGS} #{LIBS}"
+end
+
+rule ".o" => ".cc" do |t|
+  convert(t.source)
+  sh "#{CC} -c #{t.source} #{CFLAGS}"
+end
+
+task "clean" do
+  sh "rm *.o"
+end
+

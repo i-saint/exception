@@ -1,0 +1,54 @@
+require 'kconv'
+
+
+
+CFLAGS = "-O2 -I ./ -I lib #{`freetype-config --cflags`} #{`sdl-config --cflags`}".gsub(/\n/, '')
+LFLAGS = ''
+LIBS = "-L lib/ist -L lib/sgui -lsgui -list -lboost_regex -lboost_date_time -lboost_system -lboost_thread -lz -lpng -ljpeg -lGL -lGLU -lGLEW -lftgl #{`sdl-config --libs`} -lSDL_mixer #{`freetype-config --libs`}".gsub(/\n/, '')
+CC = 'g++'
+
+SRCS = Dir.glob("{.,character}/*.cc")
+OBJS = SRCS.dup.collect {|s| s.sub('.cc', '.o')}
+
+
+def convert(filename)
+  dat = open(filename){|f| f.read}
+  return if !dat.issjis
+
+  if ENV["LANG"]=="ja_JP.EUC-JP"
+    dat = dat.toeuc
+  else
+    dat = dat.toutf8
+  end
+  open(filename, "wb"){|f| f.write dat}
+end
+
+
+task "default" => "all"
+task "all" => ["ist", "sgui", "exception"]
+task "clean" => ["clean"]
+
+file "exception" => OBJS do |t|
+  sh "#{CC} -o #{t.name} #{t.prerequisites.join(' ')} #{CFLAGS} #{LIBS}"
+  sh "cp #{t.name} ../#{t.name}"
+end
+
+rule ".o" => ".cc" do |t|
+  convert(t.source)
+  cmd = "#{CC} -c #{t.source} -o #{t.source.sub('.cc', '.o')} #{CFLAGS}"
+  sh cmd
+end
+
+task "ist" do
+  sh "cd lib/ist; rake"
+end
+
+task "sgui" do
+  sh "cd lib/sgui; rake"
+end
+
+task "clean" do
+  sh "rm *.o character/*.o"
+  sh "cd lib/ist; rake clean"
+  sh "cd lib/sgui; rake clean"
+end

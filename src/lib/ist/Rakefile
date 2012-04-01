@@ -1,0 +1,26 @@
+CFLAGS = '-O2'
+LFLAGS = ''
+CC = 'g++'
+AR = 'ar'
+RANLIB = 'ranlib'
+
+OBJS = []
+Dir.foreach(".") do |f|
+  OBJS << f.sub(/\.cc/, ".o") if f.match(/\.cc$/)
+end
+
+
+task "default" => "all"
+task "all" => ["libist.a"]
+
+file "libist.a" => OBJS do |t|
+  sh "#{AR} -r #{t.name} #{t.prerequisites.join(' ')} #{LFLAGS}"
+end
+
+rule ".o" => ".cc" do |t|
+  sh "#{CC} -c #{t.source} #{CFLAGS}"
+end
+
+task "clean" do
+  sh "rm *.o"
+end

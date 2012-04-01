@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "exception", "exception.vcproj", "{1E92A5E8-5A2B-456C-8335-C3A3F4881775}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9E8063AD-93DE-493E-8D76-68F4D09F7BAB} = {9E8063AD-93DE-493E-8D76-68F4D09F7BAB}
+		{BA2F8CA3-7309-4F0A-8C08-3ECBAC6984A3} = {BA2F8CA3-7309-4F0A-8C08-3ECBAC6984A3}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ist", "src\lib\ist\ist.vcproj", "{BA2F8CA3-7309-4F0A-8C08-3ECBAC6984A3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sgui", "src\lib\sgui\sgui.vcproj", "{9E8063AD-93DE-493E-8D76-68F4D09F7BAB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BA2F8CA3-7309-4F0A-8C08-3ECBAC6984A3} = {BA2F8CA3-7309-4F0A-8C08-3ECBAC6984A3}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "exception_updater", "src\updater\exception_updater.vcproj", "{2295BCD6-7F68-45DF-A640-411E8A975839}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BA2F8CA3-7309-4F0A-8C08-3ECBAC6984A3} = {BA2F8CA3-7309-4F0A-8C08-3ECBAC6984A3}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Develop|Win32 = Develop|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E92A5E8-5A2B-456C-8335-C3A3F4881775}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1E92A5E8-5A2B-456C-8335-C3A3F4881775}.Debug|Win32.Build.0 = Debug|Win32
+		{1E92A5E8-5A2B-456C-8335-C3A3F4881775}.Develop|Win32.ActiveCfg = Develop|Win32
+		{1E92A5E8-5A2B-456C-8335-C3A3F4881775}.Develop|Win32.Build.0 = Develop|Win32
+		{1E92A5E8-5A2B-456C-8335-C3A3F4881775}.Release|Win32.ActiveCfg = Release|Win32
+		{1E92A5E8-5A2B-456C-8335-C3A3F4881775}.Release|Win32.Build.0 = Release|Win32
+		{BA2F8CA3-7309-4F0A-8C08-3ECBAC6984A3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BA2F8CA3-7309-4F0A-8C08-3ECBAC6984A3}.Debug|Win32.Build.0 = Debug|Win32
+		{BA2F8CA3-7309-4F0A-8C08-3ECBAC6984A3}.Develop|Win32.ActiveCfg = Develop|Win32
+		{BA2F8CA3-7309-4F0A-8C08-3ECBAC6984A3}.Develop|Win32.Build.0 = Develop|Win32
+		{BA2F8CA3-7309-4F0A-8C08-3ECBAC6984A3}.Release|Win32.ActiveCfg = Release|Win32
+		{BA2F8CA3-7309-4F0A-8C08-3ECBAC6984A3}.Release|Win32.Build.0 = Release|Win32
+		{9E8063AD-93DE-493E-8D76-68F4D09F7BAB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9E8063AD-93DE-493E-8D76-68F4D09F7BAB}.Debug|Win32.Build.0 = Debug|Win32
+		{9E8063AD-93DE-493E-8D76-68F4D09F7BAB}.Develop|Win32.ActiveCfg = Develop|Win32
+		{9E8063AD-93DE-493E-8D76-68F4D09F7BAB}.Develop|Win32.Build.0 = Develop|Win32
+		{9E8063AD-93DE-493E-8D76-68F4D09F7BAB}.Release|Win32.ActiveCfg = Release|Win32
+		{9E8063AD-93DE-493E-8D76-68F4D09F7BAB}.Release|Win32.Build.0 = Release|Win32
+		{2295BCD6-7F68-45DF-A640-411E8A975839}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2295BCD6-7F68-45DF-A640-411E8A975839}.Debug|Win32.Build.0 = Debug|Win32
+		{2295BCD6-7F68-45DF-A640-411E8A975839}.Develop|Win32.ActiveCfg = Develop|Win32
+		{2295BCD6-7F68-45DF-A640-411E8A975839}.Develop|Win32.Build.0 = Develop|Win32
+		{2295BCD6-7F68-45DF-A640-411E8A975839}.Release|Win32.ActiveCfg = Release|Win32
+		{2295BCD6-7F68-45DF-A640-411E8A975839}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
